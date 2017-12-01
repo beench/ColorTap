@@ -14,6 +14,8 @@ public class GameScreen extends ScreenAdapter {
     private Texture blueImg;
     private Texture greenImg;
     private int ypink;
+    private int yblue;
+    private int ygreen;
 
 	public GameScreen(ColorTap colortapGame) {
         this.colortapGame = colortapGame;
@@ -22,21 +24,27 @@ public class GameScreen extends ScreenAdapter {
         greenImg = new Texture("green.jpg");
         bgImg = new Texture("bg.jpg");
         ypink = 850;
+        yblue = 850;
+        ygreen = 850;
     }
 	
 	@Override
     public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        System.out.println("Hello " + delta);
         SpriteBatch batch = colortapGame.batch;
         update(delta);
         batch.begin();
-        batch.draw(pinkImg, 5, ypink);
+        batch.draw(bgImg, 0, 0);
+        batch.draw(pinkImg, 6, ypink);
+        batch.draw(blueImg, 226, yblue);
+        batch.draw(greenImg, 445, ygreen);
         batch.end();
 	}
 	
 	private void update(float delta) {
-        ypink -= 5;    
+        ypink -= 2;
+        yblue -= 2;
+        ygreen -= 2;
     }
 }
