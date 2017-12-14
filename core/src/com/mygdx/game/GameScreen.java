@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,6 +17,7 @@ public class GameScreen extends ScreenAdapter {
     private int ypink;
     private int yblue;
     private int ygreen;
+    private int score;
 
 	public GameScreen(ColorTap colortapGame) {
         this.colortapGame = colortapGame;
@@ -43,8 +45,17 @@ public class GameScreen extends ScreenAdapter {
 	}
 	
 	private void update(float delta) {
-        ypink -= 2;
-        yblue -= 2;
-        ygreen -= 2;
+        ypink -= 3;
+        yblue -= 3;
+        ygreen -= 3;
+        if(ypink <= 90 && Gdx.input.isKeyPressed(Keys.LEFT)) {
+        	score += 2;
+        }
+        if(yblue <= 90 && Gdx.input.isKeyPressed(Keys.DOWN)) {
+        	score += 2;
+        }
+        if(ygreen <= 90 && Gdx.input.isKeyPressed(Keys.RIGHT)) {
+        	score += 2;
+        }
     }
 }
