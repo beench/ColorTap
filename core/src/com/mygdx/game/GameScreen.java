@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
 	private ColorTap colortapGame;
@@ -14,9 +15,6 @@ public class GameScreen extends ScreenAdapter {
     private Texture bgImg;
     private Texture blueImg;
     private Texture greenImg;
-    private int ypink;
-    private int yblue;
-    private int ygreen;
     private int score;
 
 	public GameScreen(ColorTap colortapGame) {
@@ -25,9 +23,6 @@ public class GameScreen extends ScreenAdapter {
         blueImg = new Texture("blue.jpg");
         greenImg = new Texture("green.jpg");
         bgImg = new Texture("bg.jpg");
-        ypink = 850;
-        yblue = 850;
-        ygreen = 850;
     }
 	
 	@Override
@@ -38,23 +33,26 @@ public class GameScreen extends ScreenAdapter {
         update(delta);
         batch.begin();
         batch.draw(bgImg, 0, 0);
-        batch.draw(pinkImg, 6, ypink);
-        batch.draw(blueImg, 226, yblue);
-        batch.draw(greenImg, 445, ygreen);
+        Vector2 pospink = colortapGame.getPositionPink();
+        batch.draw(pinkImg, pospink.x, pospink.y);
+        Vector2 posblue = colortapGame.getPositionBlue();
+        batch.draw(blueImg, posblue.x, posblue.y);
+        Vector2 posgreen = colortapGame.getPositionGreen();
+        batch.draw(greenImg, posgreen.x, posgreen.y);
         batch.end();
 	}
 	
 	private void update(float delta) {
-        ypink -= 3;
-        yblue -= 3;
-        ygreen -= 3;
-        if(ypink <= 90 && Gdx.input.isKeyPressed(Keys.LEFT)) {
+		colortapGame.movePink();
+		colortapGame.moveBlue();
+		colortapGame.moveGreen();
+        if(colortapGame.getPositionPink().y <= 90 && Gdx.input.isKeyPressed(Keys.LEFT)) {
         	score += 2;
         }
-        if(yblue <= 90 && Gdx.input.isKeyPressed(Keys.DOWN)) {
+        if(colortapGame.getPositionBlue().y <= 90 && Gdx.input.isKeyPressed(Keys.DOWN)) {
         	score += 2;
         }
-        if(ygreen <= 90 && Gdx.input.isKeyPressed(Keys.RIGHT)) {
+        if(colortapGame.getPositionGreen().y <= 90 && Gdx.input.isKeyPressed(Keys.RIGHT)) {
         	score += 2;
         }
     }
