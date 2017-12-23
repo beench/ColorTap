@@ -126,7 +126,12 @@ public class World extends Game {
 		
 		if (Gdx.input.isKeyJustPressed(Keys.LEFT)) {
 			Tile tile = pinkTileList.get(0);
-			if (tile.getPosition().y <= 100) {
+			if (tile.getPosition().y <= 50) {
+				pinkTileList.remove(tile);
+				score += 5;
+				generatePinkTile();
+			}
+			else if (tile.getPosition().y <= 100) {
 				pinkTileList.remove(tile);
 				score += 2;
 				generatePinkTile();
@@ -135,7 +140,12 @@ public class World extends Game {
 		
 		if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
 			Tile tile = blueTileList.get(0);
-			if (tile.getPosition().y <= 100) {
+			if (tile.getPosition().y <= 50) {
+				blueTileList.remove(tile);
+				score += 5;
+				generateBlueTile();
+			}
+			else if (tile.getPosition().y <= 100) {
 				blueTileList.remove(tile);
 				score += 2;
 				generateBlueTile();
@@ -144,6 +154,11 @@ public class World extends Game {
 		
 		if (Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
 			Tile tile = greenTileList.get(0);
+			if (tile.getPosition().y <= 50) {
+				greenTileList.remove(tile);
+				score += 5;
+				generateGreenTile();
+			}
 			if (tile.getPosition().y <= 100) {
 				greenTileList.remove(tile);
 				score += 2;
