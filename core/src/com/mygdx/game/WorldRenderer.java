@@ -31,7 +31,7 @@ public class WorldRenderer {
         blueImg = new Texture("blue.jpg");
         greenImg = new Texture("green.jpg");
         bgImg = new Texture("bg.jpg");
-        gameOverImg = new Texture("GameOver.png");
+        gameOverImg = new Texture("gameover.png");
         font = new BitmapFont();
         font.getData().setScale(2);
         gameOverScore = new BitmapFont();
